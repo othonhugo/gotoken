@@ -92,7 +92,7 @@ type UnsupportedTypeError struct{}
 
 ```go
 // Ignora outros imports para melhorar a legibilidade
-import "github.com/othon-hugo/go-jwt/jwt"
+import "github.com/othon-hugo/go-jwt/pkg/jwt"
 
 type Claims struct {
 	UserID    string `json:"user_id"`

@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"github.com/othon-hugo/go-jwt/jwt"
+	"github.com/othon-hugo/go-jwt/pkg/jwt"
 )
 
 func TestMarshalExpectedTokensMatch(t *testing.T) {
