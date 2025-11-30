@@ -1,3 +1,3 @@
-module github.com/othonhugo/go-jwt
+module github.com/othonhugo/gojwt
 
-go 1.22.0
+go 1.18
