@@ -7,6 +7,9 @@ GoJWT is a robust and lightweight library for handling JSON Web Tokens (JWT) in 
 
 This library offers a lightweight, dependency-free, and easily auditable alternative. It's ideal for projects requiring a minimal, transparent, and RFC-compliant JWT implementation, or for educational purposes.
 
+> [!CAUTION]
+> This implementation is not intended for production use. It is provided for educational purposes only. _Use at your own risk._
+
 ## Features
 
 - **Adherence to RFC Standards**: Fully implements [RFC 7515 (JSON Web Signature)](https://tools.ietf.org/html/rfc7515) for secure digital signatures and [RFC 7519 (JSON Web Token)](https://tools.ietf.org/html/rfc7519) for compact, URL-safe representation of claims.
