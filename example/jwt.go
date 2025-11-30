@@ -1,7 +1,7 @@
 package example
 
 import (
-	"github.com/othon-hugo/go-jwt/jwt"
+	"github.com/othonhugo/go-jwt/jwt"
 )
 
 var SecretKey = []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}

@@ -1,6 +1,6 @@
 package jwt
 
-import "github.com/othon-hugo/go-jwt/pkg/encoding"
+import "github.com/othonhugo/go-jwt/pkg/encoding"
 
 type payload struct {
 	claims any

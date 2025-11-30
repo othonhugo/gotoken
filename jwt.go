@@ -1,7 +1,7 @@
 package jwt
 
 import (
-	"github.com/othon-hugo/go-jwt/pkg/jwt"
+	"github.com/othonhugo/go-jwt/pkg/jwt"
 )
 
 const (

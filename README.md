@@ -2,7 +2,7 @@
 
 Este pacote Go facilita a criação e validação de JSON Web Tokens (JWTs). Ele oferece funções para a serialização e desserialização de tokens JWT com base em um cabeçalho e uma carga útil.
 
-> A implementação atual não foi revisada profundamente. Agradeço se qualquer problema for relatado na seção [Issues](https://github.com/othon-hugo/go-jwt/issues) do repositório.
+> A implementação atual não foi revisada profundamente. Agradeço se qualquer problema for relatado na seção [Issues](https://github.com/othonhugo/go-jwt/issues) do repositório.
 
 ## Função `Marshal`
 
@@ -92,7 +92,7 @@ type UnsupportedTypeError struct{}
 
 ```go
 // Ignora outras dependências para melhorar a legibilidade
-import "github.com/othon-hugo/go-jwt/jwt"
+import "github.com/othonhugo/go-jwt/jwt"
 
 type Claims struct {
 	UserID    string `json:"user_id"`
