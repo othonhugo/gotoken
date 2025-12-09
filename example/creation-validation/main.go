@@ -7,24 +7,24 @@ import (
 	"log"
 	"time"
 
-	"github.com/othonhugo/gojwt"
+	"github.com/othonhugo/gotoken"
 )
 
 func main() {
 	secret := []byte("secret-key")
 
 	// Create token
-	header := gojwt.Header{Alg: gojwt.HS256}
-	claims := gojwt.Claims{
+	header := gotoken.Header{Alg: gotoken.HS256}
+	claims := gotoken.Claims{
 		Subject:   "user-456",
 		ExpiresAt: time.Now().Add(1 * time.Hour).Unix(),
 	}
 
-	token, _ := gojwt.Marshal(header, claims, secret)
+	token, _ := gotoken.Marshal(header, claims, secret)
 
 	// Validate token
-	var decoded gojwt.Claims
-	err := gojwt.Unmarshal(token, &decoded, secret)
+	var decoded gotoken.Claims
+	err := gotoken.Unmarshal(token, &decoded, secret)
 	if err != nil {
 		// Token is invalid, expired, or signature doesn't match
 		log.Println("Validation failed:", err)
