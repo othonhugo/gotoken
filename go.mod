@@ -1,3 +1,3 @@
-module github.com/othonhugo/gojwt
+module github.com/othonhugo/gotoken
 
 go 1.18

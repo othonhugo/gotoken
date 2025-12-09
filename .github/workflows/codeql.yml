@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    # Run CodeQL analysis every Wednesday at 3:00 UTC
     - cron: '0 3 * * 3'
 
 jobs:

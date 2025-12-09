@@ -1,9 +1,9 @@
-# GoJWT: A Lightweight JWT Implementation
+# GoToken: A Lightweight JWT Implementation
 
 [![Go Version](https://img.shields.io/badge/Go-1.18+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-GoJWT is a robust and lightweight library for handling JSON Web Tokens (JWT) in Go. It provides a simple implementation of both JWS (RFC 7515) and JWT (RFC 7519) standards.
+GoToken is a robust and lightweight library for handling JSON Web Tokens (JWT) in Go. It provides a simple implementation of both JWS (RFC 7515) and JWT (RFC 7519) standards.
 
 This library offers a lightweight, dependency-free, and easily auditable alternative. It's ideal for projects requiring a minimal, transparent, and RFC-compliant JWT implementation, or for educational purposes.
 
@@ -21,7 +21,7 @@ This library offers a lightweight, dependency-free, and easily auditable alterna
 ## Installation
 
 ```bash
-go get github.com/othonhugo/gojwt
+go get github.com/othonhugo/gotoken
 ```
 
 **Requirements:**
@@ -37,26 +37,26 @@ import (
     "log"
     "time"
 
-    "github.com/othonhugo/gojwt"
+    "github.com/othonhugo/gotoken"
 )
 
 func main() {
     secret := []byte("your-secret-key")
 
     // Create a token
-    header := gojwt.Header{
-        Alg: gojwt.HS256,
-        Typ: gojwt.JWT,
+    header := gotoken.Header{
+        Alg: gotoken.HS256,
+        Typ: gotoken.JWT,
     }
 
-    claims := gojwt.Claims{
+    claims := gotoken.Claims{
         Issuer:    "my-app",
         Subject:   "user-123",
         ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
         IssuedAt:  time.Now().Unix(),
     }
 
-    token, err := gojwt.Marshal(header, claims, secret)
+    token, err := gotoken.Marshal(header, claims, secret)
     if err != nil {
         log.Fatal(err)
     }
@@ -64,8 +64,8 @@ func main() {
     fmt.Println("Token:", token)
 
     // Verify and decode the token
-    var decoded gojwt.Claims
-    err = gojwt.Unmarshal(token, &decoded, secret)
+    var decoded gotoken.Claims
+    err = gotoken.Unmarshal(token, &decoded, secret)
     if err != nil {
         log.Fatal(err)
     }
@@ -82,17 +82,17 @@ func main() {
 secret := []byte("secret-key")
 
 // Create token
-header := gojwt.Header{Alg: gojwt.HS256}
-claims := gojwt.Claims{
+header := gotoken.Header{Alg: gotoken.HS256}
+claims := gotoken.Claims{
     Subject:   "user-456",
     ExpiresAt: time.Now().Add(1 * time.Hour).Unix(),
 }
 
-token, _ := gojwt.Marshal(header, claims, secret)
+token, _ := gotoken.Marshal(header, claims, secret)
 
 // Validate token
-var decoded gojwt.Claims
-err := gojwt.Unmarshal(token, &decoded, secret)
+var decoded gotoken.Claims
+err := gotoken.Unmarshal(token, &decoded, secret)
 if err != nil {
     // Token is invalid, expired, or signature doesn't match
     log.Println("Validation failed:", err)
@@ -105,7 +105,7 @@ You can extend the standard `Claims` struct with your own fields:
 
 ```go
 type CustomClaims struct {
-    gojwt.Claims
+    gotoken.Claims
     UserID   int    `json:"user_id"`
     Role     string `json:"role"`
     IsActive bool   `json:"is_active"`
@@ -113,7 +113,7 @@ type CustomClaims struct {
 
 // Create token with custom claims
 customClaims := CustomClaims{
-    Claims: gojwt.Claims{
+    Claims: gotoken.Claims{
         Subject:   "john.doe",
         ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
     },
@@ -122,11 +122,11 @@ customClaims := CustomClaims{
     IsActive: true,
 }
 
-token, _ := gojwt.Marshal(header, customClaims, secret)
+token, _ := gotoken.Marshal(header, customClaims, secret)
 
 // Decode custom claims
 var decoded CustomClaims
-gojwt.Unmarshal(token, &decoded, secret)
+gotoken.Unmarshal(token, &decoded, secret)
 
 fmt.Printf("User ID: %d, Role: %s\n", decoded.UserID, decoded.Role)
 ```
@@ -143,41 +143,41 @@ claims := map[string]interface{}{
     "role": "user",
 }
 
-token, _ := gojwt.Marshal(header, claims, secret)
+token, _ := gotoken.Marshal(header, claims, secret)
 
 // Decode to map
 var decoded map[string]interface{}
-gojwt.Unmarshal(token, &decoded, secret)
+gotoken.Unmarshal(token, &decoded, secret)
 ```
 
 ### Different Algorithms
 
 ```go
 // HS256 (HMAC-SHA256) - 32 byte signature
-header := gojwt.Header{Alg: gojwt.HS256}
+header := gotoken.Header{Alg: gotoken.HS256}
 
 // HS384 (HMAC-SHA384) - 48 byte signature
-header := gojwt.Header{Alg: gojwt.HS384}
+header := gotoken.Header{Alg: gotoken.HS384}
 
 // HS512 (HMAC-SHA512) - 64 byte signature
-header := gojwt.Header{Alg: gojwt.HS512}
+header := gotoken.Header{Alg: gotoken.HS512}
 ```
 
 ### Error Handling
 
 ```go
-err := gojwt.Unmarshal(token, &claims, secret)
+err := gotoken.Unmarshal(token, &claims, secret)
 
 switch err {
-case gojwt.ErrInvalidToken:
+case gotoken.ErrInvalidToken:
     // Token format is invalid
-case gojwt.ErrSignatureMismatch:
+case gotoken.ErrSignatureMismatch:
     // Signature verification failed (wrong secret or tampered token)
-case gojwt.ErrTokenExpired:
+case gotoken.ErrTokenExpired:
     // Token has expired (exp claim)
-case gojwt.ErrTokenNotValidYet:
+case gotoken.ErrTokenNotValidYet:
     // Token not valid yet (nbf claim)
-case gojwt.ErrTokenUsedBeforeIssued:
+case gotoken.ErrTokenUsedBeforeIssued:
     // Token used before issued time (iat claim)
 default:
     // Other errors (JSON parsing, etc.)

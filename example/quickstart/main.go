@@ -1,4 +1,4 @@
-// Quickstart example for gojwt
+// Quickstart example for gotoken
 // nolint:all // Example code: focus on clarity over style
 package main
 
@@ -7,26 +7,26 @@ import (
 	"log"
 	"time"
 
-	"github.com/othonhugo/gojwt"
+	"github.com/othonhugo/gotoken"
 )
 
 func main() {
 	secret := []byte("your-secret-key")
 
 	// Create a token
-	header := gojwt.Header{
-		Alg: gojwt.HS256,
-		Typ: gojwt.JWT,
+	header := gotoken.Header{
+		Alg: gotoken.HS256,
+		Typ: gotoken.JWT,
 	}
 
-	claims := gojwt.Claims{
+	claims := gotoken.Claims{
 		Issuer:    "my-app",
 		Subject:   "user-123",
 		ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
 		IssuedAt:  time.Now().Unix(),
 	}
 
-	token, err := gojwt.Marshal(header, claims, secret)
+	token, err := gotoken.Marshal(header, claims, secret)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,8 +34,8 @@ func main() {
 	fmt.Println("Token:", token)
 
 	// Verify and decode the token
-	var decoded gojwt.Claims
-	err = gojwt.Unmarshal(token, &decoded, secret)
+	var decoded gotoken.Claims
+	err = gotoken.Unmarshal(token, &decoded, secret)
 	if err != nil {
 		log.Fatal(err)
 	}

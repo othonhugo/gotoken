@@ -1,7 +1,7 @@
-// Package gojwt implements the JSON Web Token (JWT) standard.
-package gojwt
+// Package gotoken implements the JSON Web Token (JWT) standard.
+package gotoken
 
-import "github.com/othonhugo/gojwt/pkg/jwt"
+import "github.com/othonhugo/gotoken/pkg/jwt"
 
 const (
 	// HS256 represents the HMAC-SHA256 signing algorithm.
